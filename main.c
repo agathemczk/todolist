@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_TASKS 10
+#define MAX_TASKS 100
 
 struct task{
     char description[100];
@@ -56,12 +56,46 @@ void done(struct task list[], int task_number){
 }
 
 //Lister les tâches non terminées
-void task_to_do (){
+void task_to_do (struct task list[], int task_number) {
 
+    if (task_number == 0) {
+        printf("Il n'y a actuellement aucune tâche dans la liste. \n");
+
+    } else {
+        printf("Liste des tâches non terminées :\n");
+        char number_task_to_do = 0;
+
+        for (int i = 0; i < task_number; i++) {
+            if (list[i].is_done == 0) {
+                printf("%d. %s [%s]\n", i + 1, list[i].description, list[i].is_done ? "Complète" : "Non complète");
+                number_task_to_do ++;
+            }
+        }
+        if (number_task_to_do == 0) {
+            printf("Toutes les tâches sont déjà terminées !\n");
+            }
+    }
 }
 
 //Lister les tâches terminées
-void task_done (){
+void task_done (struct task list[], int task_number){
+
+    if (task_number == 0) {
+        printf("Il n'y a actuellement aucune tâche dans la liste. \n");
+
+    } else {
+        printf("Liste des tâches terminées :\n");
+        char number_task_done = 0;
+
+        for (int i = 0; i < task_number; i++) {
+            if (list[i].is_done == 1) {
+                printf("%d. %s [%s]\n", i + 1, list[i].description, list[i].is_done ? "Complète" : "Non complète");
+                number_task_done ++;
+            }
+        } if (number_task_done == 0) {
+            printf("Aucune tâche n'est terminée pour le moment...\n");
+        }
+    }
 
 }
 
@@ -102,6 +136,7 @@ int main () {
                 exit(0);
             default:
                 printf("Choix invalide. Veuillez réessayer.\n");
+
         }
     }
     return 0;
