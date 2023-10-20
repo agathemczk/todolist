@@ -136,6 +136,8 @@ int main () {
                 exit(0);
             default:
                 printf("Choix invalide. Veuillez réessayer.\n");
+                getchar();
+                break;
 
         }
     }
